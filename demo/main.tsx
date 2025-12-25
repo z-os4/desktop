@@ -146,8 +146,12 @@ function ZOSDemo() {
     );
   }
 
-  // Dock items
-  const dockItems = BUNDLED_APPS.slice(0, 8).map(app => ({
+  // Dock items - include App Store explicitly
+  const dockApps = [
+    ...BUNDLED_APPS.slice(0, 7),
+    BUNDLED_APPS.find(a => a.id === 'ai.hanzo.appstore')!,
+  ];
+  const dockItems = dockApps.map(app => ({
     id: app.id,
     name: app.name,
     icon: app.icon,

@@ -54,8 +54,8 @@ test.describe('zOS Desktop', () => {
     // Press Cmd+Space
     await page.keyboard.press('Meta+Space');
 
-    // Spotlight should be visible
-    const spotlight = page.locator('text=Spotlight Search');
+    // Spotlight should be visible - check for the search input
+    const spotlight = page.locator('input[placeholder="Spotlight Search"]');
     await expect(spotlight).toBeVisible();
   });
 
@@ -92,11 +92,11 @@ test.describe('zOS App Store', () => {
   });
 
   test('should show bundled apps', async ({ page }) => {
-    // Check for bundled apps
-    const calculator = page.locator('text=Calculator');
+    // Check for bundled apps - use heading selector to be specific
+    const calculator = page.locator('h3:has-text("Calculator")').first();
     await expect(calculator).toBeVisible();
 
-    const terminal = page.locator('text=Terminal');
+    const terminal = page.locator('h3:has-text("Terminal")').first();
     await expect(terminal).toBeVisible();
   });
 
@@ -105,11 +105,11 @@ test.describe('zOS App Store', () => {
     await page.fill('input[placeholder="Search apps..."]', 'calc');
 
     // Only Calculator should be visible
-    const calculator = page.locator('text=Calculator');
+    const calculator = page.locator('h3:has-text("Calculator")').first();
     await expect(calculator).toBeVisible();
 
-    // Terminal should not be visible
-    const terminal = page.locator('h3:has-text("Terminal")');
+    // Terminal heading should not be visible (not in filtered results)
+    const terminal = page.locator('h3:has-text("Terminal")').first();
     await expect(terminal).not.toBeVisible();
   });
 
@@ -193,7 +193,9 @@ test.describe('zOS Apps', () => {
   });
 
   test('System Preferences should open', async ({ page }) => {
-    await page.click('[data-testid="dock-ai.hanzo.preferences"]');
+    // Open via Spotlight since it's not in dock
+    await page.keyboard.press('Meta+Space');
+    await page.click('[data-testid="spotlight-ai.hanzo.preferences"]');
     await page.waitForSelector('[data-testid="window-ai.hanzo.preferences"]');
 
     const prefsWindow = page.locator('[data-testid="window-ai.hanzo.preferences"]');
