@@ -57,7 +57,7 @@ interface WindowState {
 }
 
 function ZOSDemo() {
-  const [booting, setBooting] = useState(true);
+  const [booting, setBooting] = useState(false); // Skip boot for testing
   const [locked, setLocked] = useState(false);
   const [windows, setWindows] = useState<WindowState[]>([]);
   const [spotlightOpen, setSpotlightOpen] = useState(false);
