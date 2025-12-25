@@ -1,6 +1,12 @@
-# @z-os/desktop v4.2.0
+# @z-os/desktop
 
-zOS Desktop Environment - Complete macOS-style desktop for the web.
+[![npm version](https://img.shields.io/npm/v/@z-os/desktop.svg)](https://www.npmjs.com/package/@z-os/desktop)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://z-os4.github.io/desktop/)
+[![CI](https://github.com/z-os4/desktop/actions/workflows/ci.yml/badge.svg)](https://github.com/z-os4/desktop/actions/workflows/ci.yml)
+
+zOS Desktop Environment - Complete macOS-style desktop for the web. v4.2.0
+
+**[📚 Full Documentation](https://z-os4.github.io/desktop/)**
 
 ## Install
 ```bash
